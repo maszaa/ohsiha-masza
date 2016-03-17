@@ -1,0 +1,14 @@
+include ./base.jade
+    .container
+      h1= title
+      form(action="/new/", method="post")
+        p
+          label(for="title") Otsikko:
+        p
+          input(type="text", name="title", id="title", style="width: 600px;")
+        p
+          label(for="text") Teksti:
+        p
+          textarea(name="text", id="text", style="height: 200px; width: 600px;")
+        p
+          input(type="submit", value="Lisää")

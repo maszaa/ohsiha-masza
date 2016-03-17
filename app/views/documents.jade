@@ -1,0 +1,7 @@
+include ./base.jade
+    .container
+      h1= title
+
+      each document in documents
+        h2= document.title
+        p= document.text
