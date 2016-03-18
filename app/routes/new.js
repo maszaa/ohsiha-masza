@@ -8,7 +8,13 @@ module.exports = function(app, models) {
                                 text: req.body.text} );
 
     text.save(function(err, text) {
-      res.render('new', {title: "Teksti " + text.title + " lisätty, lisää seuraava"});
+      if (err) {
+        console.log(err);
+        res.render('new', {title: err});
+      }
+      else {
+        res.render('new', {title: "Teksti " + text.title + " lisätty, lisää seuraava"});
+      }
     });
   });
 };

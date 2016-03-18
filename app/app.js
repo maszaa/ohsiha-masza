@@ -24,6 +24,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // read folder 'models' and require all model files
 var models = {};
+
+database.on('open', function (ref) {
+  console.log('Connected to mongo server.');
+
 fs.readdirSync(path.join(__dirname, 'models')).forEach(function(file) {
     var model = require('./models/' + file);
     for (var key in model) {
@@ -35,5 +39,5 @@ fs.readdirSync(path.join(__dirname, 'models')).forEach(function(file) {
 fs.readdirSync(path.join(__dirname, 'routes')).forEach(function(file) {
     require('./routes/' + file)(app, models);
 });
-
+});
 app.listen(3000);
