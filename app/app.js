@@ -22,22 +22,50 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// read folder 'models' and require all model files
 var models = {};
 
+// db connection succesful
 database.on('open', function (ref) {
   console.log('Connected to mongo server.');
 
-fs.readdirSync(path.join(__dirname, 'models')).forEach(function(file) {
-    var model = require('./models/' + file);
-    for (var key in model) {
-      models[key] = model[key];
-    }
+  // read folder 'models' and require all model files
+  fs.readdirSync(path.join(__dirname, 'models')).forEach(function(file) {
+      var model = require('./models/' + file);
+      for (var key in model) {
+        models[key] = model[key];
+      }
+  });
+
+  // read folder 'routes' and require all routes files
+  fs.readdirSync(path.join(__dirname, 'routes')).forEach(function(file) {
+      require('./routes/' + file)(app, models);
+  });
 });
 
-// read folder 'routes' and require all routes files
-fs.readdirSync(path.join(__dirname, 'routes')).forEach(function(file) {
-    require('./routes/' + file)(app, models);
+// db connection unsuccesful
+database.on('error', function (err) {
+  console.log('Could not connect to mongo server!');
+  console.log(err);
+  app.get('/', function(req, res, next) {
+    res.render('error', { message: "Tietokantaan ei saada yhteyttä!", error: err });
+  });
 });
+
+/* not working
+// db connection closed
+database.on('close', function () {
+  console.log('Connection to mongo server closed!');
+  app.get('/error/', function(req, res, next) {
+    res.render('error', { message: "Yhteys tietokantaan suljettiin!", error: {} });
+  });
 });
+
+// close db connection when app is terminated
+process.on('SIGINT', function() {
+  database.close(function () {
+    console.log('Connection to database disconnected through app termination');
+    process.exit(0);
+  });
+});*/
+
 app.listen(3000);
