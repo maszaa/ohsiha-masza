@@ -1,4 +1,7 @@
 include ./base.jade
     .container
       h1= title
-      p= title
+      if(!user)
+        p= title + "!"
+      else
+        p= title + " " + user.username + "!"

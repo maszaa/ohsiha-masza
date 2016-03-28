@@ -3,4 +3,9 @@ block body
   +navbar("OHSIHA","dropdown_menu","inverse")
     +nav_item("/") Etusivu
     +nav_item("/documents/") Tekstit
-    +nav_item("/new/") Lisää uusi
+    if(!user)
+      +nav_item("/login/") Kirjaudu sisään
+      +nav_item("/register/") Rekisteröidy
+    else
+      +nav_item("/new/") Lisää uusi
+      +nav_item("/logout/") Kirjaudu ulos, #{user.username}

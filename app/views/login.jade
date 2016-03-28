@@ -1,0 +1,16 @@
+include ./base.jade
+    .container
+      h1= title
+      form(action="/login/", method="post")
+        p
+          label(for="username") Käyttäjätunnus:
+        p
+          input(type="text", name="username", id="username")
+        p
+          label(for="password") Salasana:
+        p
+          input(type="password", name="password", id="password")
+        p
+          input(type="submit", value="Kirjaudu sisään")
+        p
+          a(href="/register/") Minulla ei ole käyttäjätunnusta
