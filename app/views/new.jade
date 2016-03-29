@@ -11,6 +11,9 @@ include ./base.jade
         p
           textarea(name="text", id="text", style="height: 200px; width: 600px;")
         p
+          input(type="checkbox", name="private", id="private", value="private")
+          label(for="private") Ykstyinen artikkeli
+        p
           input(type="submit", value="Lisää")
         p
           a(href="/documents") Palaa teksteihin

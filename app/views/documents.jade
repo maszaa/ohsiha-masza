@@ -4,4 +4,9 @@ include ./base.jade
 
       each document in documents
         h2= document.title
-        p= document.text
+        span
+          p(style='white-space:pre;')= document.text
+          p
+            .line Kirjoittanut: #{document.user}
+            .line Lisätty: #{document.insertDate}
+            .line Muokattu: #{document.modifiedDate}
