@@ -2,11 +2,14 @@ include ./base.jade
     .container
       h1= title
 
-      each document in documents
-        h2= document.title
-        span
-          p(style='white-space:pre;')= document.text
-          p
-            .line Kirjoittanut: #{document.user}
-            .line Lisätty: #{document.insertDate}
-            .line Muokattu: #{document.modifiedDate}
+      if(!documents.length)
+        p Ei julkisia artikkeleja
+      else
+        each document in documents
+          h2= document.title
+          span
+            p(style='white-space:pre;')= document.text
+            p
+              .line Kirjoittanut: #{document.user}
+              .line Lisätty: #{document.insertDate}
+              .line Muokattu: #{document.modifiedDate}

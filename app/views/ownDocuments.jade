@@ -9,8 +9,12 @@ include ./base.jade
       if(!documents.length)
         p
           .line Sinulla ei vielä ole omia artikkeleja
+        p
           a.btn.btn-info(href="/new/") Lisää artikkeli
       else
+        p
+          a.btn.btn-info(href="/new/") Lisää uusi artikkeli
+
         each document in documents
           h2= document.title
           span

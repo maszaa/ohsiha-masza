@@ -7,7 +7,7 @@ module.exports = function(app, models, checkLogin) {
         res.redirect('/ownDocuments/');
       }
       else {
-        if(document === undefined) {
+        if(document === null) {
           req.flash('delete', 'Artikkelin haku epäonnistui');
           res.redirect('/ownDocuments/');
         }
