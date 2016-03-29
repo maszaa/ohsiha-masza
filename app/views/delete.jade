@@ -1,0 +1,9 @@
+include ./base.jade
+    .container
+      h1= title
+      form(action="/delete/", method="post")
+        input(type='hidden', name="id", value=document.__id)
+        p
+          input(type="submit", value="Poista")
+        p
+          a(href="/documents/") Peruuta

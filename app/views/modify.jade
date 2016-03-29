@@ -1,0 +1,23 @@
+include ./base.jade
+    .container
+      h1= title + document.title
+      form(action="/modify/", method="post")
+        input(type='hidden', name="id", value=document._id)
+        p
+          label(for="title") Otsikko:
+        p
+          input(type="text", name="title", id="title", style="width: 600px;", value=document.title)
+        p
+          label(for="text") Teksti:
+        p
+          textarea(name="text", id="text", style="height: 200px; width: 600px;")= document.text
+        p
+          if(document.private)
+            input(type="checkbox", name="private", id="private", value="private", checked)
+          else
+            input(type="checkbox", name="private", id="private", value="private")
+          label(for="private") Ykstyinen artikkeli
+        p
+          input(type="submit", value="Muokkaa")
+        p
+          a(href="/documents/") Peruuta
