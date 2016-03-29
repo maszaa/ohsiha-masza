@@ -4,6 +4,6 @@ include ./base.jade
       form(action="/delete/", method="post")
         input(type='hidden', name="id", value=document._id)
         p
-          input(type="submit", value="Poista")
+          button.btn.btn-danger(type="submit") Poista
         p
-          a(href="/ownDocuments/") Peruuta
+          a.btn.btn-info(href="/ownDocuments/") Peruuta
