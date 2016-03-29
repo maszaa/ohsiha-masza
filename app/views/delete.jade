@@ -1,9 +1,9 @@
 include ./base.jade
     .container
-      h1= title
+      h1= title + document.title
       form(action="/delete/", method="post")
-        input(type='hidden', name="id", value=document.__id)
+        input(type='hidden', name="id", value=document._id)
         p
           input(type="submit", value="Poista")
         p
-          a(href="/documents/") Peruuta
+          a(href="/ownDocuments/") Peruuta

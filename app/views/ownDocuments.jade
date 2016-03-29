@@ -2,7 +2,9 @@ include ./base.jade
     .container
       h1= title
       p
-        strong= message
+        strong= addMessage
+        strong= modifyMessage
+        strong= deleteMessage
 
       each document in documents
         h2= document.title

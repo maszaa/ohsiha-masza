@@ -20,10 +20,12 @@ module.exports = function(app, models, checkLogin) {
     document.save(function(err, text) {
       if (err) {
         console.log(err);
-        res.render('new', {title: err});
+        req.flash('add', 'Artikkelin lisäys epäonnistui');
+        res.redirect('/ownDocuments/');
       }
       else {
-        res.render('new', {title: "Teksti " + document.title + " lisätty, lisää seuraava"});
+        req.flash('add', 'Lisättiin artikkeli ' + document.title);
+        res.redirect('/ownDocuments/');
       }
     });
   });

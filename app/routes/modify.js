@@ -22,7 +22,7 @@ module.exports = function(app, models, checkLogin) {
     models.Document.findOne({_id: req.body.id, user: req.user.username}, function(err, document) {
       if(err) {
         console.log(err);
-        req.flash(err);
+        req.flash('modify', 'Artikkelin haku epäonnistui');
         res.redirect('/ownDocuments/');
       }
       else {
