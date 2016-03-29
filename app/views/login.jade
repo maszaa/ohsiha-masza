@@ -1,6 +1,10 @@
 include ./base.jade
     .container
       h1= title
+      p
+        each msg in messages
+          span(style="color: red;")
+            strong= msg
       form(action="/login/", method="post")
         p
           label(for="username") Käyttäjätunnus:

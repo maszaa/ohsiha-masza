@@ -1,9 +1,9 @@
-module.exports = function(app, models) {
-  app.get('/new/', function(req, res, next) {
+module.exports = function(app, models, checkLogin) {
+  app.get('/new/', checkLogin, function(req, res, next) {
     res.render('new', {title: "Lisää uusi"});
   });
 
-  app.post('/new/', function(req, res, next) {
+  app.post('/new/', checkLogin, function(req, res, next) {
     var text = new models.Test( {title: req.body.title,
                                 text: req.body.text} );
 

@@ -1,6 +1,6 @@
 var passport = require('passport');
 
-module.exports = function(app, models) {
+module.exports = function(app, models, checkLogin) {
   app.get('/register/', function(req, res, next) {
     res.render('register', { title: 'Rekisteröidy' });
   });
@@ -8,7 +8,7 @@ module.exports = function(app, models) {
   app.post('/register/', function(req, res, next) {
     models.User.register(new models.User({username : req.body.username}), req.body.password, function(err, account) {
       if (err) {
-        res.render('register', { tittle: "Rekisteröityminen epäonnistui!" });
+        res.render('register', { title: "Rekisteröityminen epäonnistui!" });
       }
       else {
         passport.authenticate('local')(req, res, function () {

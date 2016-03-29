@@ -3,6 +3,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var flash = require('connect-flash');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
@@ -23,15 +24,19 @@ app.locals.pretty = true;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser('semmone ohsiha homma'));
+app.use(flash());
 app.use(session({
   secret: 'semmone ohsiha homma',
   resave: false,
   saveUninitialized: false,
 }));
+
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+var checkLogin= require('./helpers/checkLogin.js');
 var models = {};
 var user;
 
@@ -57,9 +62,14 @@ database.on('open', function (ref) {
     next();
   });
 
+  app.post('*', function(req, res, next) {
+      res.locals.user = req.user || null;
+      next();
+  });
+
   // read folder 'routes' and require all routes files
   fs.readdirSync(path.join(__dirname, 'routes')).forEach(function(file) {
-      require('./routes/' + file)(app, models);
+      require('./routes/' + file)(app, models, checkLogin);
   });
 });
 

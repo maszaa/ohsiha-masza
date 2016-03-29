@@ -1,4 +1,4 @@
-module.exports = function(app, models) {
+module.exports = function(app, models, checkLogin) {
   app.get('/documents/', function(req, res, next) {
     models.Test.find(function(err, test) {
       if (err) {
