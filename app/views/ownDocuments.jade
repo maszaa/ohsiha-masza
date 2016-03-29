@@ -6,14 +6,19 @@ include ./base.jade
         strong= modifyMessage
         strong= deleteMessage
 
-      each document in documents
-        h2= document.title
-        span
-          p(style='white-space:pre;')= document.text
-          p
-            .line Lisätty: #{document.insertDate}
-            .line Muokattu: #{document.modifiedDate}
-          form(method="get")
-            input(type="hidden", name="id", value=document._id)
-            button(type="submit", formaction="/modify/") Muokkaa artikkelia
-            button(type="submit", formaction="/delete/") Poista artikkeli
+      if(!documents.length)
+        p
+          .line Sinulla ei vielä ole omia artikkeleja
+          a(href="/new/") Lisää artikkeli
+      else
+        each document in documents
+          h2= document.title
+          span
+            p(style='white-space:pre;')= document.text
+            p
+              .line Lisätty: #{document.insertDate}
+              .line Muokattu: #{document.modifiedDate}
+            form(method="get")
+              input(type="hidden", name="id", value=document._id)
+              button(type="submit", formaction="/modify/") Muokkaa artikkelia
+              button(type="submit", formaction="/delete/") Poista artikkeli
