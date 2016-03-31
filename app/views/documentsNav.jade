@@ -1,0 +1,4 @@
+include ./base.jade
+  +navbar("Artikkelit","dropdown_menu")
+    each category in categories
+      +nav_item("../category/"+category)= category

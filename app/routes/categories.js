@@ -6,7 +6,7 @@ module.exports = function(app, models, checkLogin) {
         res.render('category', {title: error, documents: {}});
       }
       else {
-        res.render('category', {title: "Kirjoitukset, kategoria: " + req.params.name, documents: documents});
+        res.render('category', {title: "Kirjoitukset, kategoria: " + req.params.name, documents: documents, categories: models.Document.schema.path('category').enumValues});
       }
     });
   });

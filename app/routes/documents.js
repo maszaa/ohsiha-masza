@@ -6,7 +6,7 @@ module.exports = function(app, models, checkLogin) {
         res.render('documents', {title: error, documents: {}});
       }
       else {
-        res.render('documents', {title: "Artikkelit", documents: documents});
+        res.render('documents', {title: "Artikkelit", documents: documents, categories: models.Document.schema.path('category').enumValues});
       }
     });
   });
