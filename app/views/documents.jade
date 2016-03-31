@@ -1,22 +1,23 @@
-include ./documentsNav.jade
-.container
-  h1= title
-  hr
+include ./base.jade
+  include ./documentsNav.jade
+  .container
+    h1= title
+    hr
 
-  if(!documents.length)
-    p Ei julkisia artikkeleja
-  else
-    each document in documents
-      h2= document.category + ": " + document.title
-      p
+    if(!documents.length)
+      p Ei julkisia artikkeleja
+    else
+      each document in documents
+        h2= document.category + ": " + document.title
         p
-          i= "Kirjoittanut: "
-            a(href="../user/"+document.user)= document.user
-          p(style='white-space:pre;')= document.text
           p
-            .line
-              i Lisätty: #{document.insertDate}
-            if(document.insertDate.toString() != document.modifiedDate.toString())
+            i= "Kirjoittanut: "
+              a(href="../user/"+document.user)= document.user
+            p(style='white-space:pre;')= document.text
+            p
               .line
-               i Muokattu: #{document.modifiedDate}
-      hr
+                i Lisätty: #{document.insertDate}
+              if(document.insertDate.toString() != document.modifiedDate.toString())
+                .line
+                 i Muokattu: #{document.modifiedDate}
+        hr
