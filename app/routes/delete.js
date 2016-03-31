@@ -1,6 +1,6 @@
 module.exports = function(app, models, checkLogin) {
-  app.get('/delete/', checkLogin, function(req, res, next) {
-    models.Document.findOne({_id: req.query.id, user: req.user.username}, function(err, document) {
+  app.get('/delete/:id', checkLogin, function(req, res, next) {
+    models.Document.findOne({_id: req.params.id, user: req.user.username}, function(err, document) {
       if(err) {
         console.log(err);
         req.flash('delete', 'Artikkelin haku epäonnistui');

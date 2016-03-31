@@ -26,8 +26,7 @@ include ./base.jade
               .line
                 i Muokattu: #{document.modifiedDate}
 
-          form(method="get")
-            input(type="hidden", name="id", value=document._id)
-            button.btn.btn-primary(type="submit", formaction="/modify/") Muokkaa artikkelia
-            button.btn.btn-warning(type="submit", formaction="/delete/") Poista artikkeli
+          a.btn.btn-primary(href="../modify/"+document._id) Muokkaa artikkelia
+          span= " "
+          a.btn.btn-warning(href="../delete/"+document._id) Poista artikkeli
         hr
