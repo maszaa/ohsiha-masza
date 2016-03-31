@@ -1,6 +1,6 @@
 module.exports = function(app, models, checkLogin) {
   app.get('/new/', checkLogin, function(req, res, next) {
-    res.render('new', {title: "Lisää uusi"});
+    res.render('new', {title: "Lisää uusi", categories: models.Document.schema.path('category').enumValues});
   });
 
   app.post('/new/', checkLogin, function(req, res, next) {
@@ -15,6 +15,7 @@ module.exports = function(app, models, checkLogin) {
     var document = new models.Document( { title: req.body.title,
                                       text: req.body.text,
                                       user: req.user.username,
+                                      category: req.body.category,
                                       private: isPrivate} );
 
     document.save(function(err, text) {

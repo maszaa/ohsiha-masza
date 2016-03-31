@@ -1,19 +1,28 @@
 include ./base.jade
-    .container
-      h1= title
-      form(action="/new/", method="post")
-        p
-          label(for="title") Otsikko:
-        p
-          input(type="text", name="title", id="title", style="width: 600px;")
-        p
-          label(for="text") Teksti:
-        p
-          textarea(name="text", id="text", style="height: 200px; width: 600px;")
-        p
-          input(type="checkbox", name="private", id="private", value="private")
-          label(for="private") Ykstyinen artikkeli
-        p
-          button.btn.btn-primary(type="submit") Lisää
-        p
-          a.btn.btn-info(href="/ownDocuments/") Palaa teksteihin
+  .container
+    h1= title
+    form(action="/new/", method="post")
+      p
+        label(for="title") Otsikko:
+      p
+        input(type="text", name="title", id="title", style="width: 600px;")
+      p
+        label(for="text") Teksti:
+      p
+        textarea(name="text", id="text", style="height: 200px; width: 600px;")
+      p
+        label(for="category") Kategoria:
+      p
+        select(name="category", id="category")
+          option(value="Artikkeli", selected) Artikkeli
+          option(value="Arvostelu") Arvostelu
+          option(value="Mielipide") Mielipide
+          option(value="Kommentti") Kommentti
+          option(value="Blogikirjoitus") Blogikirjoitus
+      p
+        input(type="checkbox", name="private", id="private", value="private")
+        label(for="private") Ykstyinen artikkeli
+      p
+        button.btn.btn-primary(type="submit") Lisää
+      p
+        a.btn.btn-info(href="/ownDocuments/") Palaa teksteihin

@@ -12,7 +12,7 @@ module.exports = function(app, models, checkLogin) {
           res.redirect('/ownDocuments/');
         }
         else {
-          res.render('modify', {title: "Muokkaa artikkelia ", document: document});
+          res.render('modify', {title: "Muokkaa artikkelia ", document: document, categories: models.Document.schema.path('category').enumValues});
         }
       }
     });
@@ -41,6 +41,7 @@ module.exports = function(app, models, checkLogin) {
 
           document.title = req.body.title;
           document.text = req.body.text;
+          document.category = req.body.category;
           document.private = isPrivate;
           document.modifiedDate = new Date().toJSON();
           document.save(function(err) {

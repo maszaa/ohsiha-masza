@@ -19,6 +19,7 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.locals.pretty = true;
+app.set('json spaces', 2);
 
 // some parser initializing
 app.use(bodyParser.json());

@@ -1,9 +1,9 @@
 include ./base.jade
-    .container
-      h1= title + document.title
-      form(action="/delete/", method="post")
-        input(type='hidden', name="id", value=document._id)
-        p
-          button.btn.btn-danger(type="submit") Poista
-        p
-          a.btn.btn-info(href="/ownDocuments/") Peruuta
+  .container
+    h1= title + document.title
+    form(action="/delete/", method="post")
+      input(type='hidden', name="id", value=document._id)
+      p
+        button.btn.btn-danger(type="submit") Poista
+      p
+        a.btn.btn-info(href="/ownDocuments/") Peruuta

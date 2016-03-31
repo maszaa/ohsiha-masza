@@ -1,28 +1,33 @@
 include ./base.jade
-    .container
-      h1= title
+  .container
+    h1= title
+    p
+      each message in messages
+        strong= message
+
+    if(!documents.length)
       p
-        strong= addMessage
-        strong= modifyMessage
-        strong= deleteMessage
+        .line Sinulla ei vielä ole omia artikkeleja
+      p
+        a.btn.btn-info(href="/new/") Lisää artikkeli
+    else
+      p
+        a.btn.btn-info(href="/new/") Lisää uusi artikkeli
+      hr
 
-      if(!documents.length)
+      each document in documents
+        h2= document.category + ": " + document.title
         p
-          .line Sinulla ei vielä ole omia artikkeleja
-        p
-          a.btn.btn-info(href="/new/") Lisää artikkeli
-      else
-        p
-          a.btn.btn-info(href="/new/") Lisää uusi artikkeli
+          p(style='white-space:pre;')= document.text
+          p
+            .line
+              i Lisätty: #{document.insertDate}
+            if(document.insertDate.toString() != document.modifiedDate.toString())
+              .line
+                i Muokattu: #{document.modifiedDate}
 
-        each document in documents
-          h2= document.title
-          span
-            p(style='white-space:pre;')= document.text
-            p
-              .line Lisätty: #{document.insertDate}
-              .line Muokattu: #{document.modifiedDate}
-            form(method="get")
-              input(type="hidden", name="id", value=document._id)
-              button.btn.btn-primary(type="submit", formaction="/modify/") Muokkaa artikkelia
-              button.btn.btn-warning(type="submit", formaction="/delete/") Poista artikkeli
+          form(method="get")
+            input(type="hidden", name="id", value=document._id)
+            button.btn.btn-primary(type="submit", formaction="/modify/") Muokkaa artikkelia
+            button.btn.btn-warning(type="submit", formaction="/delete/") Poista artikkeli
+        hr

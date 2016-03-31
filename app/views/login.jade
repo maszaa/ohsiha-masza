@@ -1,21 +1,21 @@
 include ./base.jade
-    .container
-      h1= title
-      p
-        each msg in messages
-          span(style="color: red;")
-            strong= msg
+  .container
+    h1= title
+    p
+      each msg in messages
+        span(style="color: red;")
+          strong= msg
 
-      form(action="/login/", method="post")
-        p
-          label(for="username") Käyttäjätunnus:
-        p
-          input(type="text", name="username", id="username")
-        p
-          label(for="password") Salasana:
-        p
-          input(type="password", name="password", id="password")
-        p
-          button.btn.btn-primary(type="submit") Kirjaudu sisään
-        p
-          a.btn.btn-info(href="/register/") Minulla ei ole käyttäjätunnusta
+    form(action="/login/", method="post")
+      p
+        label(for="username") Käyttäjätunnus:
+      p
+        input(type="text", name="username", id="username")
+      p
+        label(for="password") Salasana:
+      p
+        input(type="password", name="password", id="password")
+      p
+        button.btn.btn-primary(type="submit") Kirjaudu sisään
+      p
+        a.btn.btn-info(href="/register/") Minulla ei ole käyttäjätunnusta

@@ -1,23 +1,32 @@
 include ./base.jade
-    .container
-      h1= title + document.title
-      form(action="/modify/", method="post")
-        input(type='hidden', name="id", value=document._id)
-        p
-          label(for="title") Otsikko:
-        p
-          input(type="text", name="title", id="title", style="width: 600px;", value=document.title)
-        p
-          label(for="text") Teksti:
-        p
-          textarea(name="text", id="text", style="height: 200px; width: 600px;")= document.text
-        p
-          if(document.private)
-            input(type="checkbox", name="private", id="private", value="private", checked)
-          else
-            input(type="checkbox", name="private", id="private", value="private")
-          label(for="private") Ykstyinen artikkeli
-        p
-          button.btn.btn-primary(type="submit") Muokkaa
-        p
-          a.btn.btn-info(href="/ownDocuments/") Peruuta
+  .container
+    h1= title + document.title
+    form(action="/modify/", method="post")
+      input(type='hidden', name="id", value=document._id)
+      p
+        label(for="title") Otsikko:
+      p
+        input(type="text", name="title", id="title", style="width: 600px;", value=document.title)
+      p
+        label(for="text") Teksti:
+      p
+        textarea(name="text", id="text", style="height: 200px; width: 600px;")= document.text
+      p
+        label(for="category") Kategoria:
+      p
+        select(name="category", id="category")
+          each category in categories
+            if(document.category == category)
+              option(value=category, selected)= category
+            else
+              option(value=category)= category
+      p
+        if(document.private)
+          input(type="checkbox", name="private", id="private", value="private", checked)
+        else
+          input(type="checkbox", name="private", id="private", value="private")
+        label(for="private") Ykstyinen artikkeli
+      p
+        button.btn.btn-primary(type="submit") Muokkaa
+      p
+        a.btn.btn-info(href="/ownDocuments/") Peruuta

@@ -7,7 +7,7 @@ include ./base.jade
       p Ei julkisia artikkeleja
     else
       each document in documents
-        h2= document.category + ": " + document.title
+        h2= document.title
         p
           p
             i Kirjoittanut: #{document.user}
