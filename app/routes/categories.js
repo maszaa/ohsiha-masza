@@ -10,4 +10,7 @@ module.exports = function(app, models, checkLogin) {
       }
     });
   });
+  app.get('/category/', function(req, res, next) {
+    res.redirect('/documents/');
+  });
 };
