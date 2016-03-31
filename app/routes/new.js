@@ -21,8 +21,8 @@ module.exports = function(app, models, checkLogin) {
     document.save(function(err, text) {
       if (err) {
         console.log(err);
-        req.flash('add', 'Artikkelin lisäys epäonnistui');
-        res.redirect('/ownDocuments/');
+        res.render('new', {title: "Artikkelin lisäys epäonnistui, yritä uudestaan", categories: models.Document.schema.path('category').enumValues,
+                            textTitle: req.body.title, textText: req.body.text, textCategory: req.body.category, textPrivate: isPrivate});
       }
       else {
         req.flash('add', 'Lisättiin artikkeli ' + document.title);
