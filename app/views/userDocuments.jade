@@ -10,8 +10,6 @@ include ./base.jade
         h2= document.category + ": " + document.title
         p
           p
-            i= "Kirjoittanut: "
-              a(href="../user/"+document.user)= document.user
             p(style='white-space:pre;')= document.text
             p
               .line
