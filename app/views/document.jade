@@ -1,0 +1,24 @@
+include ./base.jade
+  .container
+    h1= title
+    hr
+
+    if(!document)
+      p Ei artikkelia
+    else
+      p
+        p
+          .line
+            i= "Kirjoittanut: "
+            a(href="../user/"+document.user+"/posts")= document.user
+          .line
+            i= "Kategoria: "
+            a(href="../category/"+document.category)= document.category
+        p(style='white-space:pre;')= document.text
+        p
+          .line
+            i Lisätty: #{document.insertDate}
+          if(document.insertDate.toString() != document.modifiedDate.toString())
+            .line
+             i Muokattu: #{document.modifiedDate}
+      hr

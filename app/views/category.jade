@@ -8,16 +8,17 @@ include ./base.jade
       p Ei julkisia artikkeleja
     else
       each document in documents
-        h2= document.title
+        h2= document.category + ": "
+          a(href="../document/"+document._id)= document.title
         p
           p
             i= "Kirjoittanut: "
               a(href="../user/"+document.user+"/posts")= document.user
-            p(style='white-space:pre;')= document.text
-            p
+          p(style='white-space:pre;')= document.text
+          p
+            .line
+              i Lisätty: #{document.insertDate}
+            if(document.insertDate.toString() != document.modifiedDate.toString())
               .line
-                i Lisätty: #{document.insertDate}
-              if(document.insertDate.toString() != document.modifiedDate.toString())
-                .line
-                 i Muokattu: #{document.modifiedDate}
+               i Muokattu: #{document.modifiedDate}
         hr
