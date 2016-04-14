@@ -1,18 +1,16 @@
 module.exports = function(app, models, checkLogin) {
   app.get('/category/:name', function(req, res, next) {
-    if (req.query.format === 'json') {
-      models.Document.find({category: req.params.name, private: false}).sort({modifiedDate: 'desc'}).lean().exec(function(err, documents) {
+    models.Document.find({category: req.params.name, private: false}).sort({modifiedDate: 'desc'}).lean().exec(function(err, documents) {
+      if (req.query.format === 'json') {
         if (err) {
           console.log(err);
           res.status(404).json(err);
         }
         else {
-          res.json(documents);
+          res.json({category: req.params.name, documents: documents});
         }
-      });
-    }
-    else {
-      models.Document.find({category: req.params.name, private: false}).sort({modifiedDate: 'desc'}).exec(function(err, documents) {
+      }
+      else {
         if (err) {
           console.log(err);
           res.render('category', {title: err, documents: {}});
@@ -20,8 +18,8 @@ module.exports = function(app, models, checkLogin) {
         else {
           res.render('category', {title: "Kirjoitukset, kategoria: " + req.params.name, documents: documents, categories: models.Document.schema.path('category').enumValues});
         }
-      });
-    }
+      }
+    });
   });
   app.get('/category/', function(req, res, next) {
     res.redirect('/documents/');

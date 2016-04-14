@@ -1,7 +1,7 @@
 module.exports = function(app, models, checkLogin) {
   app.get('/document/:id', function(req, res, next) {
-    if (req.query.format === 'json') {
-      models.Document.findOne({_id: req.params.id}).lean().exec(function(err, document) {
+    models.Document.findOne({_id: req.params.id}).lean().exec(function(err, document) {
+      if (req.query.format === 'json') {
         if (err) {
           console.log(err);
           res.status(404).json(err);
@@ -28,10 +28,8 @@ module.exports = function(app, models, checkLogin) {
             res.status(403).json({error: 'Artikkeli ei sallittu'});
           }
         }
-      });
-    }
-    else {
-      models.Document.findOne({_id: req.params.id}, function(err, document) {
+      }
+      else {
         if (err) {
           console.log(err);
           res.render('document', {title: err});
@@ -58,7 +56,7 @@ module.exports = function(app, models, checkLogin) {
             res.render('document', {title: 'Artikkeli ei sallittu'});
           }
         }
-      });
-    }
+      }
+    });
   });
 };
