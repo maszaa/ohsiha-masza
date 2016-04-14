@@ -7,7 +7,8 @@ include ./base.jade
       p Ei julkisia artikkeleja
     else
       each document in documents
-        h2= document.category + ": " + document.title
+        h2= document.category + ": "
+          a(href="../../document/"+document._id)= document.title
         p
           p
             p(style='white-space:pre;')= document.text

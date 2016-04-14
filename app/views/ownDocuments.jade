@@ -26,6 +26,8 @@ include ./base.jade
               .line
                 i Muokattu: #{document.modifiedDate}
 
+          a.btn.btn-info(href="../document/"+document._id) Lue artikkeli
+          span= " "
           a.btn.btn-primary(href="../modify/"+document._id) Muokkaa artikkelia
           span= " "
           a.btn.btn-warning(href="../delete/"+document._id) Poista artikkeli
