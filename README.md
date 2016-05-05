@@ -1,7 +1,7 @@
 # OHSIHA App
-Node.js application made as a project work of OHSIHA 2016.
+Node.js application made as project work of OHSIHA 2016.
 
-User can register, log in and log out , see other users' articles and write/modify/delete own ones (also private articles).
+User can register, log in and log out, see other users' articles and write/modify/delete own ones (also private articles).
 
 ## Used technologies
 Node.js with
@@ -11,11 +11,12 @@ Node.js with
 * Jade-bootstrap
 * Passport (/w passport-local & passport-local-mongoose)
 * Connect-flash
+
 and MongoDB
 
 ## App structure
 * `app.js` - web server
-* `/config` - folder for config files (e.g. database)
+* `/config` - config files (e.g. database)
 * `/helpers` - helping functions etc.
 * `/models` - Mongoose models
 * `/routes` - views and routes associated to those
@@ -28,11 +29,11 @@ Assuming you have MongoDB and Node with npm installed, run
 
 to help you running your app (supervisor watches for file changes etc.).
 
-After that install local npm packages in *app/* folder
+After that install local npm packages in `app/` folder
 
     npm install
 
-You can also change the database credentials in *app/config/database.js* if you want
+You can also change the database credentials in `app/config/database.js` if you want
 
 ## Running
 Run the app by
