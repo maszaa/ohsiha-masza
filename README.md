@@ -36,6 +36,6 @@ After that install local npm packages in `app/` folder
 You can also change the database credentials in `app/config/database.js` if you want
 
 ## Running
-Run the app by
+Start MongoDB server and run the app by
 
     npm start
