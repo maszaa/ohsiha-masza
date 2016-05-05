@@ -1,7 +1,7 @@
 {
   "name": "ohsiha",
   "version": "0.0.1",
-  "private": true,
+  "license": "MIT",
   "scripts": {
     "start": "supervisor ./app.js"
   },
